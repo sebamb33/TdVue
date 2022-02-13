@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo DAWIN</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    <span v-bind:title="messagettile">
+        <span v-if="seen">Now you see me</span>
+        <ul v-for="(film,index) in films">
+            <div  class="Afilm">
+                <li v-on:click:="viewOtherData(index)">
+                    {{ film.nom }}
+                </li>
+                    <button v-on:click="updatefilm(index)">Modifier</button>
+                    <button v-on:click="deleteFilm(index)">Supprimer</button>
+                    <div v-bind:id="(index)" class="infoSupp">
+                    <ul v-if="film.DisplayOtherData" class="listeInfoSupp">
+                        <li>Année : {{film.annee}}</li>
+                        <li>Réalisateur :{{film.realisateur}}</li>
+                        <li>Synopsis :{{film.synopsis}} </li>
+                    </ul>
+                </div>
+            </div>
+        </ul>
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">Reverse Message</button>
+        <input v-model="message">
+        <button v-on:click="addFilm">Ajouter un film</button>
+        <p>{{message[0]}}</p>
+        <h1>Ajouter un film</h1>
+        <input v-model="messEnreg">
+        <button v-if='seenbuttonAdd'v-on:click="addFilmWithData">Ajouter un film</button>
+        <button v-if='seenbuttonUpdate'v-on:click="updateLeFilm">Modifier un film</button>
+</div>
+
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            message: 'kayak!',
+            messagettile:"Coucou",
+            IDotherData:-1,
+            messEnreg:"",
+            seen:true,
+            seenbuttonAdd:true,
+            seenbuttonUpdate:false,
+            seenOtherData:false,
+            indexOnload:-1,
+            films:[
+                {nom:"un film",annee:2021,realisateur:"kiki",synopsis:"coucou",DisplayOtherData:false},{nom:"un film",annee:2021,realisateur:"kiki",synopsis:"coucou",DisplayOtherData:false},{nom:"un film",annee:2021,realisateur:"kiki",synopsis:"coucou",DisplayOtherData:false}
+            ]
+        },
+        methods: {
+            reverseMessage: function () {
+                this.message = this.message.split('').reverse().join('');
+            },
+            addFilm:function ()
+            {
+              this.films.push("leNouveauxfilm");
+            },
+            addFilmWithData: function ()
+            {
+                this.films.push(this.messEnreg);
+            },
+            updatefilm: function(index)
+            {
+                this.indexOnload=index;
+                this.messEnreg=this.films[index].nom;
+                this.seenbuttonAdd=false;
+                this.seenbuttonUpdate=true;
+            },
+            updateLeFilm:function()
+            {
+                if(this.indexOnload!=-1){
+                    this.films[this.indexOnload].nom=this.messEnreg;
+                    this.seenbuttonAdd=true;
+                    this.seenbuttonUpdate=false;
+                    this.messEnreg="";
+                    this.indexOnload=-1;
+                }
+            },
+            deleteFilm:function(index)
+            {
+                this.films.splice(index, 1);
+                 //this.films[index];
+            },
+            viewOtherData:function(index)
+            {
+                this.films[index].DisplayOtherData=true;
+            }
+        }
+    })
+</script>
+</body>
+</html>
+
