@@ -15,7 +15,7 @@
         <span v-if="seen">Now you see me</span>
         <ul v-for="(film,index) in films">
             <div  class="Afilm">
-                <li v-on:click:="viewOtherData(index)">
+                <li v-on:click="viewOtherData(index)">
                     {{ film.nom }}
                 </li>
                     <button v-on:click="updatefilm(index)">Modifier</button>
@@ -38,6 +38,11 @@
         <input v-model="messEnreg">
         <button v-if='seenbuttonAdd'v-on:click="addFilmWithData">Ajouter un film</button>
         <button v-if='seenbuttonUpdate'v-on:click="updateLeFilm">Modifier un film</button>
+        <div class="zoneRecherche">
+            <h1>Rechercher un film</h1>
+            <input v-model="filmRech">
+            <button v-on:click="rechFilm">Rechercher un film</button>
+        </div>
 </div>
 
 <script>
@@ -48,6 +53,7 @@
             messagettile:"Coucou",
             IDotherData:-1,
             messEnreg:"",
+            filmRech:"",
             seen:true,
             seenbuttonAdd:true,
             seenbuttonUpdate:false,
@@ -94,6 +100,9 @@
             viewOtherData:function(index)
             {
                 this.films[index].DisplayOtherData=true;
+            },
+            rechFilm:function(){
+                this.films = (this.films.filter(element=> element.nom.includes(this.filmRech)));
             }
         }
     })
