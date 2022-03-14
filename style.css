@@ -1,0 +1,55 @@
+.zoneRecherche{
+    border-radius: 5px;
+    background: #ededed;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 1em;
+    margin: 1em;
+    width: 30%;
+    justify-content: space-around;
+    align-items: center;
+}
+input
+{
+    margin: 1em 0.2em;
+}
+.zoneRecherche h1
+{
+    color:#0062cc ;
+}
+.zoneAjout
+{
+    border-radius: 5px;
+    background: #ededed;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 1em;
+    margin: 1em;
+    width: 30%;
+    justify-content: space-around;
+    align-items: center;
+}
+.Afilm
+{
+    border-radius: 5px;
+    background: #ededed;
+    display: flex;
+    flex-direction: column;
+    padding: 2em 1em;
+    margin: 1em;
+    width: 70%;
+    height: 5%;
+    justify-content: space-around;
+    align-items: center;
+}
+.lesFilms
+{
+    border-radius: 5px;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    width: 50%;
+    justify-content: space-around;
+    align-items: center;
+}
